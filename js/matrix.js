@@ -16,7 +16,7 @@ setCanvasSize();
 window.addEventListener('resize', setCanvasSize);
 
 // الحروف المستخدمة في التأثير
-const chars = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン0123456789';
+const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()_+{}[]|;:,.<>?~';
 const fontSize = 14;
 const columns = canvas.width / fontSize;
 const drops = new Array(Math.floor(columns)).fill(0);

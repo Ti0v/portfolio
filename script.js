@@ -142,3 +142,52 @@ document.addEventListener('mousemove', (e) => {
     
     document.body.style.backgroundPosition = `${mouseX * 50}% ${mouseY * 50}%`;
 });
+
+// إدارة القائمة المتجاوبة
+const menuBtn = document.querySelector('.menu-btn');
+const mobileMenu = document.querySelector('.mobile-menu');
+const body = document.body;
+
+menuBtn.addEventListener('click', () => {
+    mobileMenu.classList.toggle('active');
+    menuBtn.classList.toggle('active');
+    body.classList.toggle('menu-open');
+    
+    // تغيير أيقونة القائمة
+    const icon = menuBtn.querySelector('i');
+    if (mobileMenu.classList.contains('active')) {
+        icon.classList.remove('fa-bars');
+        icon.classList.add('fa-times');
+    } else {
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+    }
+});
+
+// إغلاق القائمة عند النقر على أي رابط
+document.querySelectorAll('.mobile-nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+        mobileMenu.classList.remove('active');
+        menuBtn.classList.remove('active');
+        body.classList.remove('menu-open');
+        
+        const icon = menuBtn.querySelector('i');
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+    });
+});
+
+// إغلاق القائمة عند النقر خارجها
+document.addEventListener('click', (e) => {
+    if (mobileMenu.classList.contains('active') && 
+        !mobileMenu.contains(e.target) && 
+        !menuBtn.contains(e.target)) {
+        mobileMenu.classList.remove('active');
+        menuBtn.classList.remove('active');
+        body.classList.remove('menu-open');
+        
+        const icon = menuBtn.querySelector('i');
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+    }
+});
