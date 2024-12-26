@@ -1,89 +1,110 @@
-// تهيئة تأثير Matrix Rain
-const canvas = document.createElement('canvas');
+// Interactive Particles Animation
+const canvas = document.getElementById('particleCanvas');
 const ctx = canvas.getContext('2d');
 
-// إضافة الكانفاس إلى القسم الرئيسي
-const hero = document.querySelector('.hero');
-canvas.className = 'matrix-rain';
-hero.insertBefore(canvas, hero.firstChild);
-
-// تحديد حجم الكانفاس
-function setCanvasSize() {
+// Set canvas size
+function resizeCanvas() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 }
-setCanvasSize();
-window.addEventListener('resize', setCanvasSize);
 
-// الحروف المستخدمة في التأثير
-const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()_+{}[]|;:,.<>?~';
-const fontSize = 14;
-const columns = canvas.width / fontSize;
-const drops = new Array(Math.floor(columns)).fill(0);
+// Initial resize
+resizeCanvas();
 
-// إنشاء التدرج اللوني
-const gradientColors = ['#00d4ff', '#ff0080'];
-let currentColorIndex = 0;
+// Resize canvas when window is resized
+window.addEventListener('resize', resizeCanvas);
 
-// دالة للحصول على اللون المتدرج
-function getGradientColor(y) {
-    const normalizedY = y / canvas.height;
-    const color1 = gradientColors[0];
-    const color2 = gradientColors[1];
-    
-    // تحويل الألوان إلى RGB
-    const r1 = parseInt(color1.slice(1, 3), 16);
-    const g1 = parseInt(color1.slice(3, 5), 16);
-    const b1 = parseInt(color1.slice(5, 7), 16);
-    
-    const r2 = parseInt(color2.slice(1, 3), 16);
-    const g2 = parseInt(color2.slice(3, 5), 16);
-    const b2 = parseInt(color2.slice(5, 7), 16);
-    
-    // حساب اللون المتدرج
-    const r = Math.floor(r1 + (r2 - r1) * normalizedY);
-    const g = Math.floor(g1 + (g2 - g1) * normalizedY);
-    const b = Math.floor(b1 + (b2 - b1) * normalizedY);
-    
-    return `rgb(${r},${g},${b})`;
-}
-
-// رسم تأثير Matrix
-function draw() {
-    // إضافة طبقة شفافة سوداء لتأثير التلاشي
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    // تعيين حجم الخط
-    ctx.font = fontSize + 'px monospace';
-
-    // رسم الحروف
-    for (let i = 0; i < drops.length; i++) {
-        // اختيار حرف عشوائي
-        const char = chars[Math.floor(Math.random() * chars.length)];
-        
-        // تعيين لون الحرف باستخدام التدرج
-        ctx.fillStyle = getGradientColor(drops[i] * fontSize);
-        
-        // رسم الحرف
-        ctx.fillText(char, i * fontSize, drops[i] * fontSize);
-
-        // إضافة توهج للحروف
-        ctx.shadowBlur = 5;
-        ctx.shadowColor = ctx.fillStyle;
-
-        // إعادة تعيين الحرف إلى الأعلى عند وصوله للأسفل
-        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-            drops[i] = 0;
-        }
-
-        // تحريك الحرف للأسفل
-        drops[i]++;
+// Particle class
+class Particle {
+    constructor() {
+        this.reset();
     }
 
-    // إعادة تعيين التوهج
-    ctx.shadowBlur = 0;
+    reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 2 + 1;
+        this.speedX = (Math.random() - 0.5) * 0.5;
+        this.speedY = (Math.random() - 0.5) * 0.5;
+        this.opacity = Math.random() * 0.5 + 0.2;
+    }
+
+    update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+
+        if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+        if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+    }
+
+    draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(100, 255, 218, ${this.opacity})`;
+        ctx.fill();
+    }
 }
 
-// تشغيل التأثير
-setInterval(draw, 33);
+// Create particles
+const particles = [];
+const particleCount = 100;
+
+for (let i = 0; i < particleCount; i++) {
+    particles.push(new Particle());
+}
+
+// Mouse interaction
+let mouse = {
+    x: undefined,
+    y: undefined,
+    radius: 100
+};
+
+canvas.addEventListener('mousemove', (event) => {
+    mouse.x = event.x;
+    mouse.y = event.y;
+});
+
+// Animation loop
+function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    particles.forEach(particle => {
+        particle.update();
+        particle.draw();
+
+        // Connect particles
+        particles.forEach(otherParticle => {
+            const dx = particle.x - otherParticle.x;
+            const dy = particle.y - otherParticle.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+
+            if (distance < 100) {
+                ctx.beginPath();
+                ctx.strokeStyle = `rgba(100, 255, 218, ${0.1 * (1 - distance/100)})`;
+                ctx.lineWidth = 1;
+                ctx.moveTo(particle.x, particle.y);
+                ctx.lineTo(otherParticle.x, otherParticle.y);
+                ctx.stroke();
+            }
+        });
+
+        // Mouse interaction
+        if (mouse.x) {
+            const dx = particle.x - mouse.x;
+            const dy = particle.y - mouse.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+
+            if (distance < mouse.radius) {
+                const force = (mouse.radius - distance) / mouse.radius;
+                const angle = Math.atan2(dy, dx);
+                particle.x += Math.cos(angle) * force * 2;
+                particle.y += Math.sin(angle) * force * 2;
+            }
+        }
+    });
+
+    requestAnimationFrame(animate);
+}
+
+animate();

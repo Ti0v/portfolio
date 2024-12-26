@@ -10,78 +10,134 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
+    <canvas id="particleCanvas"></canvas>
     <!-- الهيدر -->
     <header class="header">
         <nav class="navbar">
             <a href="#" class="logo">
-                <i class="fas fa-code"></i>
-              مبرمج
+                <div class="logo-icon">
+                    <i class="fas fa-code"></i>
+                </div>
+                <span class="logo-text">مازن</span>
             </a>
             
             <ul class="nav-links">
-                <li><a href="#home" class="nav-link active">الرئيسية</a></li>
-                <li><a href="#about" class="nav-link">من أنا</a></li>
-                <li><a href="#projects" class="nav-link">مشاريعي</a></li>
-                <li><a href="#skills" class="nav-link">مهاراتي</a></li>
-                <li><a href="#contact" class="contact-btn">تواصل معي</a></li>
+                <li><a href="#home" class="nav-link active">
+                    <i class="fas fa-home"></i>
+                    <span>الرئيسية</span>
+                </a></li>
+                <li><a href="#about" class="nav-link">
+                    <i class="fas fa-user"></i>
+                    <span>من أنا</span>
+                </a></li>
+                <li><a href="#projects" class="nav-link">
+                    <i class="fas fa-project-diagram"></i>
+                    <span>مشاريعي</span>
+                </a></li>
+                <li><a href="#skills" class="nav-link">
+                    <i class="fas fa-laptop-code"></i>
+                    <span>مهاراتي</span>
+                </a></li>
+                <li><a href="#contact" class="contact-btn">
+                    <i class="fas fa-paper-plane"></i>
+                    <span>تواصل معي</span>
+                </a></li>
             </ul>
 
             <button class="menu-btn">
-                <i class="fas fa-bars"></i>
+                <div class="menu-icon">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </button>
         </nav>
 
         <!-- قائمة الموبايل -->
         <div class="mobile-menu">
             <div class="mobile-nav-links">
-                <a href="#home" class="mobile-nav-link active">الرئيسية</a>
-                <a href="#about" class="mobile-nav-link">من أنا</a>
-                <a href="#projects" class="mobile-nav-link">مشاريعي</a>
-                <a href="#skills" class="mobile-nav-link">مهاراتي</a>
-                <a href="#contact" class="mobile-nav-link contact-btn">تواصل معي</a>
+                <a href="#home" class="mobile-nav-link active">
+                    <i class="fas fa-home"></i>
+                    <span>الرئيسية</span>
+                </a>
+                <a href="#about" class="mobile-nav-link">
+                    <i class="fas fa-user"></i>
+                    <span>من أنا</span>
+                </a>
+                <a href="#projects" class="mobile-nav-link">
+                    <i class="fas fa-project-diagram"></i>
+                    <span>مشاريعي</span>
+                </a>
+                <a href="#skills" class="mobile-nav-link">
+                    <i class="fas fa-laptop-code"></i>
+                    <span>مهاراتي</span>
+                </a>
+                <a href="#contact" class="mobile-nav-link contact-btn">
+                    <i class="fas fa-paper-plane"></i>
+                    <span>تواصل معي</span>
+                </a>
             </div>
         </div>
     </header>
 
     <!-- قسم البطل -->
-    <section class="hero">
-        <div class="animated-bg">
-            <div class="light-effect"></div>
-            <div class="grid-overlay"></div>
-            <div class="particles-container">
-                <div class="particle"></div>
-                <div class="particle"></div>
-                <div class="particle"></div>
-                <div class="particle"></div>
-                <div class="particle"></div>
-                <div class="particle"></div>
-                <div class="particle"></div>
-                <div class="particle"></div>
-                <div class="particle"></div>
-                <div class="particle"></div>
-            </div>
-        </div>
+    <section id="home" class="hero">
         <div class="hero-content">
+            <div class="hero-greeting" data-aos="fade-down">مرحباً 👋</div>
             <h1 data-aos="fade-up">
                 <span class="highlight">مازن الأحمدي</span>
                 <br>
-                <span class="subtitle">مطور تطبيقات ويب</span>
+                <div class="typing-container">
+                    <span class="typing-text">مطور</span>
+                    <span class="typing-items" data-items="تطبيقات ويب, تطبيقات موبايل, واجهات المستخدم, خدمات سحابية"></span>
+                </div>
             </h1>
-            <p data-aos="fade-up" data-aos-delay="100">
-                أقدم حلول برمجية مبتكرة وعصرية لتطوير تطبيقات الويب
+            <p class="hero-description" data-aos="fade-up" data-aos-delay="100">
+                مطور برمجيات شغوف بتطوير تجارب مستخدم استثنائية
                 <br>
-                متخصص في بناء واجهات المستخدم التفاعلية وتطوير الخدمات السحابية
+                متخصص في تحويل الأفكار المبتكرة إلى حلول تقنية متميزة
             </p>
+            <div class="hero-stats" data-aos="fade-up" data-aos-delay="150">
+                <div class="stat">
+                    <span class="stat-number">+3</span>
+                    <span class="stat-label">سنوات خبرة</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">+15</span>
+                    <span class="stat-label">مشروع منجز</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">+10</span>
+                    <span class="stat-label">عميل سعيد</span>
+                </div>
+            </div>
             <div class="hero-buttons" data-aos="fade-up" data-aos-delay="200">
                 <a href="#projects" class="btn btn-primary">
                     <i class="fas fa-rocket"></i>
-                    مشاريعي
+                    تصفح أعمالي
                 </a>
                 <a href="#contact" class="btn btn-outline">
                     <i class="fas fa-paper-plane"></i>
                     تواصل معي
                 </a>
             </div>
+            <div class="social-links" data-aos="fade-up" data-aos-delay="250">
+                <a href="#" class="social-link" title="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="#" class="social-link" title="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="#" class="social-link" title="Twitter">
+                    <i class="fab fa-twitter"></i>
+                </a>
+            </div>
+        </div>
+        <div class="scroll-indicator" data-aos="fade-up" data-aos-delay="300">
+            <div class="mouse">
+                <div class="wheel"></div>
+            </div>
+            <div class="arrow"></div>
         </div>
     </section>
 
@@ -440,41 +496,88 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const filterBtns = document.querySelectorAll('.filter-btn');
-            const projects = document.querySelectorAll('.project-card');
+            // Typing Animation
+            const typingElement = document.querySelector('.typing-items');
+            if (typingElement) {
+                const items = typingElement.getAttribute('data-items').split(',');
+                let currentItemIndex = 0;
+                let currentCharIndex = 0;
+                let isDeleting = false;
+                let typingSpeed = 100;
 
-            filterBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    // إزالة الكلاس النشط من جميع الأزرار
-                    filterBtns.forEach(btn => btn.classList.remove('active'));
-                    // إضافة الكلاس النشط للزر المحدد
-                    this.classList.add('active');
+                function type() {
+                    const currentItem = items[currentItemIndex].trim();
+                    
+                    if (isDeleting) {
+                        typingElement.textContent = currentItem.substring(0, currentCharIndex - 1);
+                        currentCharIndex--;
+                        typingSpeed = 50;
+                    } else {
+                        typingElement.textContent = currentItem.substring(0, currentCharIndex + 1);
+                        currentCharIndex++;
+                        typingSpeed = 100;
+                    }
 
-                    const filterValue = this.getAttribute('data-filter');
+                    if (!isDeleting && currentCharIndex === currentItem.length) {
+                        isDeleting = true;
+                        typingSpeed = 1500; // Pause at end
+                    } else if (isDeleting && currentCharIndex === 0) {
+                        isDeleting = false;
+                        currentItemIndex = (currentItemIndex + 1) % items.length;
+                        typingSpeed = 500; // Pause before next word
+                    }
 
-                    projects.forEach(project => {
-                        project.classList.remove('show');
-                        
-                        if (filterValue === 'all' || project.getAttribute('data-category') === filterValue) {
-                            setTimeout(() => {
-                                project.classList.add('show');
-                            }, 0);
-                        }
-                    });
-                });
-            });
-        });
-    </script>
+                    setTimeout(type, typingSpeed);
+                }
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
+                type();
+            }
+
+            // Navigation and Scroll
             const header = document.querySelector('.header');
             const menuBtn = document.querySelector('.menu-btn');
             const mobileMenu = document.querySelector('.mobile-menu');
             const navLinks = document.querySelectorAll('.nav-link, .mobile-nav-link');
+            
+            // Handle smooth scrolling
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    
+                    if (targetSection) {
+                        targetSection.scrollIntoView({ behavior: 'smooth' });
+                        
+                        // Close mobile menu if open
+                        mobileMenu.classList.remove('active');
+                        menuBtn.classList.remove('active');
+                        document.body.classList.remove('menu-open');
+                    }
+                });
+            });
 
-            // تغيير خلفية الهيدر عند السكرول
-            window.addEventListener('scroll', () => {
+            // Handle active link highlighting
+            window.addEventListener('scroll', function() {
+                let current = '';
+                const sections = document.querySelectorAll('section');
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (scrollY >= (sectionTop - sectionHeight/3)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${current}`) {
+                        link.classList.add('active');
+                    }
+                });
+
+                // Add scrolled class to header
                 if (window.scrollY > 50) {
                     header.classList.add('scrolled');
                 } else {
@@ -482,41 +585,11 @@
                 }
             });
 
-            // فتح وإغلاق قائمة الموبايل
+            // Handle mobile menu
             menuBtn.addEventListener('click', () => {
                 mobileMenu.classList.toggle('active');
-                menuBtn.querySelector('i').classList.toggle('fa-bars');
-                menuBtn.querySelector('i').classList.toggle('fa-times');
-            });
-
-            // تحديث الرابط النشط عند السكرول
-            window.addEventListener('scroll', () => {
-                let current = '';
-                const sections = document.querySelectorAll('section');
-
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop;
-                    const sectionHeight = section.clientHeight;
-                    if (scrollY >= (sectionTop - sectionHeight / 3)) {
-                        current = section.getAttribute('id');
-                    }
-                });
-
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href').slice(1) === current) {
-                        link.classList.add('active');
-                    }
-                });
-            });
-
-            // إغلاق القائمة عند النقر على رابط
-            navLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    mobileMenu.classList.remove('active');
-                    menuBtn.querySelector('i').classList.add('fa-bars');
-                    menuBtn.querySelector('i').classList.remove('fa-times');
-                });
+                menuBtn.classList.toggle('active');
+                document.body.classList.toggle('menu-open');
             });
         });
     </script>
