@@ -410,6 +410,18 @@ body {
 
     .menu-btn {
         display: block;
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        color: var(--text-primary);
+        cursor: pointer;
+        z-index: 1001;
+        transition: transform 0.3s ease;
+    }
+
+    .menu-btn:hover {
+        color: var(--accent-1);
+        transform: scale(1.1);
     }
 
     .logo-icon {
@@ -2506,7 +2518,7 @@ section {
 /* تحديث نظام الألوان الكامل للموقع مع إضافة تأثيرات متناسقة */
 :root {
     /* الألوان الأساسية */
-    --bg-primary: rgba(10, 17, 40, 0.95);
+    --bg-primary: rgba(10, 25, 40, 0.95);
     --bg-secondary: rgba(10, 17, 40, 0.8);
     --text-primary: #ffffff;
     --text-secondary: #b8c1ec;
@@ -3259,4 +3271,38 @@ input:focus, textarea:focus {
     height: 100%;
     z-index: -1;
     background: linear-gradient(135deg, #0a1128 0%, #1a2b4b 100%);
+}
+
+/* تصميم زر الواتساب */
+.whatsapp-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: #25D366;
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 2rem auto;
+    max-width: 250px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.2);
+    text-decoration: none;
+}
+
+.whatsapp-btn i {
+    font-size: 1.3rem;
+}
+
+.whatsapp-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.3);
+    background: #22c35e;
+    color: white;
+}
+
+.whatsapp-btn:active {
+    transform: translateY(0);
 }
