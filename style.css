@@ -2713,10 +2713,13 @@ input:focus, textarea:focus {
     margin: 0 auto;
 }
 
+
+
 .logo {
     font-size: 1.8rem;
     font-weight: bold;
     background: var(--gradient-1);
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     text-decoration: none;
@@ -2724,13 +2727,6 @@ input:focus, textarea:focus {
     align-items: center;
     gap: 0.5rem;
     text-shadow: var(--neon-shadow);
-}
-
-.logo i {
-    font-size: 2rem;
-    background: var(--gradient-1);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
 }
 
 .nav-links {
